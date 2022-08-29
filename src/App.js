@@ -11,14 +11,14 @@ import { useState } from "react";
 function App() {
   const [count, setCount] = useState(0);
 
-  const compraTotal = () => {
-    setCount((compra) => compra + 1);
-  };
+  function suma() {
+    setCount(count + 1);
+  }
 
   return (
     <div className="App">
       <Cabecera cuentaInicial={count} />
-      <Listado totalDeCompra={compraTotal} />
+      <Listado onSumar={suma} />
     </div>
   );
 }

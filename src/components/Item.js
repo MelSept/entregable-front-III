@@ -9,37 +9,40 @@
 //    button       (este boton debe permitir comprar, pero si la cantidad es menor a 0 debe estar deshabilitado y decir "Sin stock")
 import React, { useState } from "react";
 
-export default function Item({ compraTotal, nombre, descripcion, stock }) {
-  const [stockDisponible, setStockDisponible] = useState(stock);
+export default function Item(props) {
+  const [stock, setStock] = useState(props.stock);
 
-  const comprar = () => {
-    if (stockDisponible > 0) {
-      setStockDisponible((compra) => compra - 1);
-      compraTotal();
+  function onClickHandler() {
+    if (stock === 0) {
+      return;
     }
-  };
+    setStock(stock - 1);
+    props.onSumar();
+  }
 
   return (
     <div className="producto">
-      {
-        <React.Fragment>
-          <h3>{nombre}</h3>
-          <p>{descripcion}</p>
+      <h3>{props.nombre}</h3>
+      <p>{props.descripcion}</p>
+
+      {stock === 0 ? (
+        <>
           <h5>
-            En stock:{" "}
-            <span>{stockDisponible > 0 ? stockDisponible : "Agotado"}</span>
+            En stock:
+            <span>agotado</span>
           </h5>
-          <button
-            disabled={stockDisponible === 0}
-            onClick={() => {
-              comprar();
-              compraTotal();
-            }}
-          >
-            COMPRAR
+          <button disabled={true} onClick={onClickHandler}>
+            <span>SIN STOCK</span>
           </button>
-        </React.Fragment>
-      }
+        </>
+      ) : (
+        <>
+          <h5>En stock: {stock}</h5>
+          <button onClick={onClickHandler}>
+            <span>COMPRAR</span>
+          </button>
+        </>
+      )}
     </div>
   );
 }

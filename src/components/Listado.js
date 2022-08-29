@@ -10,16 +10,16 @@ import React from "react";
 import data from "./data.json";
 import Item from "./Item";
 
-export default function Listado({ compraTotal }) {
+export default function Listado(props) {
   return (
     <div className="container">
       {data.map((item) => (
         <Item
+          onSumar={props.onSumar}
           key={item.id}
           nombre={item.producto.nombre}
           descripcion={item.producto.descripcion}
           stock={item.stock}
-          compraTotal={compraTotal}
         />
       ))}
     </div>
