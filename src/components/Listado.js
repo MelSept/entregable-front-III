@@ -10,12 +10,12 @@ import React from "react";
 import data from "./data.json";
 import Item from "./Item";
 
-export default function Listado(props) {
+export default function Listado({ onSumar }) {
   return (
     <div className="container">
       {data.map((item) => (
         <Item
-          onSumar={props.onSumar}
+          onSumar={onSumar}
           key={item.id}
           nombre={item.producto.nombre}
           descripcion={item.producto.descripcion}

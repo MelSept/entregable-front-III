@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <Cabecera cuentaInicial={count} />
+      <Cabecera count={count} />
       <Listado onSumar={suma} />
     </div>
   );
